@@ -4,17 +4,7 @@ var types = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", 
 var evolvePokemonData = [];
 
 
-function showTypes () {
 
-	for (let typeNum in types) {
-		var myImage = new Image(50, 19);
-		myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
-		myImage.alt = types[typeNum];
-		myImage.id = "thisImg";
-		myImage.onclick = showPrimitiveImage(types[typeNum]);
-		document.body.appendChild(myImage);
-	}
-}
 
 
 
@@ -65,7 +55,17 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 		myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		myImage.alt = types[typeNum];
 		myImage.id = "thisImg";
+
+
 		myImage.onclick = function () {
+
+		//elem = document.getElementById("primitive pokemons");
+		for (let typeNum in types) {
+			const toRemove = document.getElementsByClassName(types[typeNum])
+			while (toRemove.length > 0) {
+				toRemove[0].parentNode.removeChild(toRemove[0])
+			}
+		}
 
 			var thesePokemons = [];
 
@@ -81,9 +81,9 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 							var myImage = new Image(64, 64);
 							myImage.src = "pokemon/" + thesePokemons[poke].id + ".png";
 							myImage.id = "thisImg";
-							document.body.appendChild(myImage);
+							myImage.className = types[typeNum];
 
-
+							document.getElementById("primitive_pokemons").appendChild(myImage);
 						}
 					}
 				}
@@ -91,7 +91,12 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 			}
 
 		}
-		document.body.appendChild(myImage);
+
+
+		document.getElementById("types").appendChild(myImage);
+
+
+
 	}
 
 

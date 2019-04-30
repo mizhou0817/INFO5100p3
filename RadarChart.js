@@ -35,7 +35,7 @@ var RadarChart = {
     var unsorted = d.slice(0)
     d = d.sort(compare)
     var data = d
-    cfg.maxValue = 250;
+    cfg.maxValue = 200;
     
     // var allAxis = (d[0].map(function(i, j){return i.area}));
     //console.log(d[0])
