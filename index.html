@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Pokemon Comparison</title>
+		<link rel="stylesheet" href="main.css" />
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+
+	</head>
+	<body>
+		<script src="types.js"></script>
+
+		<div id='input'>
+			<form id='radarform' method="post" action="javascript:radarAdd()" >
+			<input id='box' style="width:200px" type='text' list='pokemons' placeholder='Enter Pokemon' data-list-filter="^">
+			<datalist id='pokemons'></datalist>
+			<button id='Add' type="button" value="Add">Add</button>
+			<button id='Clear' type="button" value="Clear">Clear</button>
+			</form>
+		</div>
+
+		<div id = 'radarchart'></div>
+
+		<script src="RadarChart.js"></script>			
+		<script src="Radar.js"></script>
+
+	</body>
+</html>
