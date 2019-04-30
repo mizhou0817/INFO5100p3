@@ -3,14 +3,22 @@ var types = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", 
 
 var evolvePokemonData = [];
 
-for (let typeNum in types) {
-	var myImage = new Image(50, 19);
-	myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
-	myImage.alt = types[typeNum];
-	myImage.id = "thisImg";
-	//myImage.onclick = showPrimitiveImage(types[typeNum]);
-	document.body.appendChild(myImage);
+
+function showTypes () {
+
+	for (let typeNum in types) {
+		var myImage = new Image(50, 19);
+		myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
+		myImage.alt = types[typeNum];
+		myImage.id = "thisImg";
+		//myImage.onclick = showPrimitiveImage(types[typeNum]);
+		document.body.appendChild(myImage);
+	}
+
+
+
 }
+
 
 
 
@@ -24,48 +32,40 @@ for (let typeNum in types){
 }
 
 
-Promise.all([
-	d3.csv("pokemon_species.csv")
-]
-).then(speciesData => {
 
-		for (let poke in speciesData) {
-		var isPrimitive = false;
-		var thisType = speciesData[poke].Type
+d3.csv("pokemon_species.csv", function(speciesData) {
 
 
+	for (let poke in speciesData) {
+	var isPrimitive = false;
+	var thisType = speciesData[poke].Type
 
-			if (speciesData[poke].evolves_from_species_id === '') {
-				isPrimitive = true;
-			}
 
-			for (let t in evolvePokemonData) {
-				if (evolvePokemonData[t].type === thisType) {
-					evolvePokemonData[t].pokemons.push({
-						id: speciesData[poke].id,
-						primitive: isPrimitive,
-						evolvesFrom: speciesData[poke].evolves_from_species_id
-					})
-				}
-			}
+
+		if (speciesData[poke].evolves_from_species_id === '') {
+			isPrimitive = true;
 		}
 
-});
+		for (let t in evolvePokemonData) {
+			if (evolvePokemonData[t].type === thisType) {
+				evolvePokemonData[t].pokemons.push({
+					id: speciesData[poke].id,
+					primitive: isPrimitive,
+					evolvesFrom: speciesData[poke].evolves_from_species_id
+				})
+			}
+		}
+	}
 
 
 
 
-console.log(evolvePokemonData[0].pokemons);
 
-
-
-
-	showPrimitiveImage("Bug");
+	console.log(evolvePokemonData[0].pokemons);
 
 	function showPrimitiveImage(type) {
 
 		var thesePokemons = [];
-
 
 		for (let t in evolvePokemonData) {
 
@@ -93,6 +93,26 @@ console.log(evolvePokemonData[0].pokemons);
 		}
 
 	}
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+//showPrimitiveImage("Bug");
+
+
 
 
 
