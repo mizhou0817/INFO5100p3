@@ -11,12 +11,9 @@ function showTypes () {
 		myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		myImage.alt = types[typeNum];
 		myImage.id = "thisImg";
-		//myImage.onclick = showPrimitiveImage(types[typeNum]);
+		myImage.onclick = showPrimitiveImage(types[typeNum]);
 		document.body.appendChild(myImage);
 	}
-
-
-
 }
 
 
@@ -61,38 +58,50 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 
 
 
-	console.log(evolvePokemonData[0].pokemons);
+	//console.log(evolvePokemonData[0].pokemons);
 
-	function showPrimitiveImage(type) {
+	for (let typeNum in types) {
+		var myImage = new Image(50, 19);
+		myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
+		myImage.alt = types[typeNum];
+		myImage.id = "thisImg";
+		myImage.onclick = function () {
 
-		var thesePokemons = [];
+			var thesePokemons = [];
 
-		for (let t in evolvePokemonData) {
-
-				//console.log(evolvePokemonData[t].pokemons);
+			for (let t in evolvePokemonData) {
 
 
-			if (evolvePokemonData[t].type === type) {
-				thesePokemons = evolvePokemonData[t].pokemons;
+				if (evolvePokemonData[t].type === types[typeNum]) {
+					thesePokemons = evolvePokemonData[t].pokemons;
 
-				for (let poke in evolvePokemonData[t].pokemons) {
-					//console.log(evolvePokemonData[t].pokemons[0]);
+					for (let poke in thesePokemons) {
+
+						if (thesePokemons[poke].primitive == true) {
+							var myImage = new Image(64, 64);
+							myImage.src = "pokemon/" + thesePokemons[poke].id + ".png";
+							myImage.id = "thisImg";
+							document.body.appendChild(myImage);
+
+
+						}
+					}
 				}
-			}
-
-		}
-
-		for (let poke in thesePokemons) {
-
-
-
-			if (thesePokemons[poke].primitive == true) {
 
 			}
 
 		}
-
+		document.body.appendChild(myImage);
 	}
+
+
+	//function showPrimitiveImage(type) {
+
+
+
+	//}
+
+	//showPrimitiveImage("Bug");
 
 
 
