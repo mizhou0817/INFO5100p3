@@ -1,0 +1,18 @@
+.inline {
+  font-size: 2em;
+  font-weight: 100;
+  display: inline;
+}
+
+.h1-bold {
+  font-size: 2em;
+  font-weight: 600;
+  display: inline;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: solid 1px #e44c65;
+  width: fit-content;
+}

@@ -1,0 +1,9 @@
+.habitat-inactive {
+  opacity: 0.15;
+  transition: 0.5s opacity cubic-bezier(0.455, 0.03, 0.515, 0.955)
+}
+
+.habitat-active {
+  opacity: 1;
+  transition: 0.5s opacity cubic-bezier(0.455, 0.03, 0.515, 0.955)
+}

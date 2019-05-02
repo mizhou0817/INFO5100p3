@@ -79,7 +79,6 @@ const removeOldTypePokemon = () => {
 }
 
 const removeOldEvolutionPokemon = () => {
-	console.log('removeOldEvolutionPokemon');
 	const toRemoveEvolutionPokemon = document.getElementsByClassName('evolutionPokemon')
 		
 	while (toRemoveEvolutionPokemon.length > 0) {
@@ -145,7 +144,6 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 		typeImage.alt = types[typeNum];
 		typeImage.className = "typesImg";
 
-
 		typeImage.onclick = function () {
 			removeOldTypePokemon()
 			removeOldEvolutionPokemon()
@@ -159,19 +157,27 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 				if (evolvePokemonData[t].type === types[typeNum]) {
 					thesePokemons = evolvePokemonData[t].pokemons;
 
-					for (let poke in thesePokemons) {
-						if (thesePokemons[poke].primitive == true) {
+					for (let poke of thesePokemons) {
+						if (poke.primitive == true) {
+							const { pokemonName } = poke
 							const pokemonOfTypeImg = new Image(64, 64);
-							pokemonOfTypeImg.src = "pokemon/" + thesePokemons[poke].id + ".png";
+							pokemonOfTypeImg.src = "pokemon/" + poke.id + ".png";
 							pokemonOfTypeImg.className = 'type-pokemon';
+							pokemonOfTypeImg.setAttribute('data-tippy-content', pokemonName)
 							pokemonOfTypeImg.classList.add('animated', 'rollIn')
+							console.log(poke);
+							tippy('.type-pokemon')
+							// const tippyIdentifer = '#' + pokemonName
+							// tippy(tippyIdentifer, {
+							// 	content: poke.pokemonName
+							// })
 
 							pokemonOfTypeImg.onclick = function () {
 								removeOldEvolutionPokemon()
 
 								var evolutionPokemonImg = new Image(80, 80);
-								evolutionPokemonImg.src = "pokemon/" + thesePokemons[poke].id + ".png";
-								evolutionPokemonImg.id = thesePokemons[poke].id;
+								evolutionPokemonImg.src = "pokemon/" + poke.id + ".png";
+								evolutionPokemonImg.id = poke.id;
 								evolutionPokemonImg.className = 'evolutionPokemon'
 
 								const evolutionContainer = document.getElementById('center_evolution')
@@ -181,7 +187,7 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 
 								document.getElementById("evolution_chain").appendChild(evolutionPokemonImg);
 
-								isEvolve = traceEvolution(thesePokemons[poke].id);
+								isEvolve = traceEvolution(poke.id);
 
 
 								for (var evolveDirection in isEvolve[1]) {

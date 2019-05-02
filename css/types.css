@@ -1,0 +1,11 @@
+.typesImg {
+  opacity: 0.6;
+  margin-right: 0.5rem;
+  transition: 0.5s all cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition-property: opacity, transform;
+}
+
+.typesImg:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

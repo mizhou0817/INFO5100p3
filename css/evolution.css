@@ -1,0 +1,22 @@
+#center_evolution {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s opacity ease-in-out;
+}
+
+#center_evolution_visible {
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  transition: 0.3s opacity ease-in-out;
+}
+
+#evolution_chain {
+  margin: 2rem 0;
+  border: solid 1px #e44c65;
+}
+
+.evolutionPokemon {
+  margin: 1rem;
+}

@@ -8,73 +8,8 @@ section {
   margin-bottom: 5rem;
 }
 
-.inline {
-  font-size: 2em;
-  font-weight: 100;
-  display: inline;
-}
-
-.h1-bold {
-  font-size: 2em;
-  font-weight: 600;
-  display: inline;
-}
-
-.section-header {
-  margin-bottom: 2rem;
-  padding-bottom: 0.5rem;
-  border-bottom: solid 1px #e44c65;
-  width: fit-content;
-}
-
-.typesImg {
-  opacity: 0.6;
-  margin-right: 0.5rem;
-  transition: 0.5s all cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition-property: opacity, transform;
-}
-
-.typesImg:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.habitat-inactive {
-  opacity: 0.15;
-  transition: 0.5s opacity cubic-bezier(0.455, 0.03, 0.515, 0.955)
-}
-
-.habitat-active {
-  opacity: 1;
-  transition: 0.5s opacity cubic-bezier(0.455, 0.03, 0.515, 0.955)
-}
-
 #primitive_pokemon {
   position: relative;
-}
-
-
-#center_evolution {
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  transition: 0.3s opacity ease-in-out;
-}
-
-#center_evolution_visible {
-  display: flex;
-  justify-content: center;
-  opacity: 1;
-  transition: 0.3s opacity ease-in-out;
-}
-
-#evolution_chain {
-  margin: 2rem 0;
-  border: solid 1px #e44c65;
-}
-
-.evolutionPokemon {
-  margin: 1rem;
 }
 
 button {
