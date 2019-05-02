@@ -10,7 +10,7 @@ const habitatName = d3.scaleOrdinal()
 
 var habitats = d3.select("svg#habitats")
 				.attr("width", 1000)
-				.attr("height", 80);
+				.attr("height", 90);
 
 function greyHabitats() {
 	for(let i=1; i <= 9; i++) {
@@ -187,9 +187,6 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 
 								document.getElementById("evolution_chain").appendChild(myImage);
 
-
-
-
 								isEvolve = traceEvolution(thesePokemons[poke].id);
 
 
@@ -197,11 +194,6 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 									//console.log(isEvolve[1][evolveDirection]);
 									isEvolve2 = traceEvolution(isEvolve[1][evolveDirection]);
 								}
-
-
-
-								
-
 
 								function traceEvolution (id) {
 
