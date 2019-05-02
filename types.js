@@ -15,11 +15,13 @@ var habitats = d3.select("svg#habitats")
 function greyHabitats() {
 	for(let i=1; i <= 9; i++) {
 		habitats.append("image")
-				.attr("href", "habitat/"+i.toString()+"-grey.png")
+				.attr("href", "habitat/"+i.toString()+".png")
 				.attr("x", 84*(i-1))
 				.attr("y", 0)
 				.attr("height", 64)
-				.attr("width", 64);
+				.attr("width", 64)
+				.attr('id', i)
+				.attr('class', 'habitat-inactive')
 		habitats.append("text")
 				.text(habitatName(i))
 				.attr("x", 84*(i-1)+30)
@@ -69,15 +71,32 @@ for (let typeNum in types){
 // svg containing the evolution chain
 var chain = d3.select("svg#evolution_chain");
 
+const removeOldTypePokemon = () => {
+	const toRemoveTypesPokemon = document.getElementsByClassName('type-pokemon')
+	while (toRemoveTypesPokemon.length > 0) {
+		toRemoveTypesPokemon[0].parentNode.removeChild(toRemoveTypesPokemon[0])
+	}
+}
+
+const removeOldEvolutionPokemon = () => {
+	console.log('removeOldEvolutionPokemon');
+	const toRemoveEvolutionPokemon = document.getElementsByClassName('evolutionPokemon')
+		
+	while (toRemoveEvolutionPokemon.length > 0) {
+		toRemoveEvolutionPokemon[0].parentNode.removeChild(toRemoveEvolutionPokemon[0])
+	}
+	const toRemoveEvolvedPokemonContainer = document.getElementById('center_evolution_visible')
+
+	if (toRemoveEvolvedPokemonContainer !== null) {
+			document.getElementById('center_evolution_visible').id = 'center_evolution'
+	}
+}
+
 
 d3.csv("pokemon_species.csv", function(speciesData) {
-
-
 	for (let poke in speciesData) {
-	var isPrimitive = false;
-	var thisType = speciesData[poke].Type
-
-
+		var isPrimitive = false;
+		var thisType = speciesData[poke].Type
 
 		if (speciesData[poke].evolves_from_species_id === '') {
 			isPrimitive = true;
@@ -95,90 +114,77 @@ d3.csv("pokemon_species.csv", function(speciesData) {
 		}
 	}
 
-
-
-
-
-	console.log(evolvePokemonData);
-
 	for (let typeNum in types) {
 		var myImage = new Image(50, 19);
 		myImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		myImage.alt = types[typeNum];
-		myImage.id = "thisImg";
+		myImage.className = "typesImg";
 
 
 		myImage.onclick = function () {
+			const activeHabitats = document.getElementsByClassName('habitat-active')
+			if (activeHabitats.length > 0) {
+				for (let x=0; x<activeHabitats.length; x++) {
+					activeHabitats[x].setAttribute('class', 'habitat-inactive')
+				}
+			}
 
 			// hightlight corresponding habitats
 			let type = this.alt;
-			
-			// first turn all habitats into grey
-			greyHabitats();
 
 			// then hightlight corresponding habitats of this type
 			let habitat = type_habitat[type];
-			// console.log(habitats);
 			for(let i in habitat) {
 				let num = habitat[i];
-				habitats.append("image")
-						.attr("href", "habitat/"+num.toString()+".png")
-						.attr("x", 84*(num-1))
-						.attr("y", 0)
-						.attr("height", 64)
-						.attr("width", 64);				
+				const allHabitatImgs = document.getElementsByClassName('habitat-inactive')
+				for (let x=0; x<allHabitatImgs.length; x++) {
+					const habitatImg = allHabitatImgs[x]
+					if (num === Number(habitatImg.id)) {
+						habitatImg.setAttribute('class', 'habitat-active')
+					}
+				}
+
+				// habitats.append("image")
+				// 		.attr("href", "habitat/"+num.toString()+".png")
+				// 		.attr("x", 84*(num-1))
+				// 		.attr("y", 0)
+				// 		.attr("height", 64)
+				// 		.attr("width", 64)
+				// 		.attr('class', 'habitat-active')
 			}
 
 
-		//elem = document.getElementById("primitive pokemons");
+			//elem = document.getElementById("primitive pokemons");
 		
-			const toRemoveTypesPokemon = document.getElementsByClassName('type-pokemon')
-			const toRemoveEvolutionPokemon = document.getElementsByClassName('evolutionPokemon')
-			while (toRemoveTypesPokemon.length > 0) {
-				toRemoveTypesPokemon[0].parentNode.removeChild(toRemoveTypesPokemon[0])
-			}
-			while (toRemoveEvolutionPokemon.length > 0) {
-				toRemoveEvolutionPokemon[0].parentNode.removeChild(toRemoveEvolutionPokemon[0])
-			}
-			const toRemoveEvolvedPokemonContainer = document.getElementById('center_evolution_visible')
-			console.log(toRemoveEvolvedPokemonContainer);
-			if (toRemoveEvolvedPokemonContainer !== null) {
-					document.getElementById('center_evolution_visible').id = 'center_evolution'
-			}
-
+			removeOldTypePokemon()
+			removeOldEvolutionPokemon()
 
 			var thesePokemons = [];
 
 			for (let t in evolvePokemonData) {
-
-
 				if (evolvePokemonData[t].type === types[typeNum]) {
 					thesePokemons = evolvePokemonData[t].pokemons;
 
 					for (let poke in thesePokemons) {
-
 						if (thesePokemons[poke].primitive == true) {
 							var myImage = new Image(64, 64);
 							myImage.src = "pokemon/" + thesePokemons[poke].id + ".png";
-							myImage.id = "thisImg";
 							myImage.className = 'type-pokemon';
+							myImage.classList.add('animated', 'rollIn')
 
 							myImage.onclick = function () {
-								const toRemove = document.getElementsByClassName('evolutionPokemon')
-									while (toRemove.length > 0) {
-										toRemove[0].parentNode.removeChild(toRemove[0])
-									}
-
-
-
+								removeOldEvolutionPokemon()
 
 								var myImage = new Image(80, 80);
 								myImage.src = "pokemon/" + thesePokemons[poke].id + ".png";
 								myImage.id = thesePokemons[poke].id;
 								myImage.className = 'evolutionPokemon'
+
 								const evolutionContainer = document.getElementById('center_evolution')
-								if (evolutionContainer !== null)
-									document.getElementById('center_evolution').id = 'center_evolution_visible'
+								if (evolutionContainer !== null) {
+									evolutionContainer.id = 'center_evolution_visible'
+								}
+
 								document.getElementById("evolution_chain").appendChild(myImage);
 
 
