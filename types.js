@@ -118,7 +118,7 @@ const setYourHabitatActive = (type) => {
 	}
 }
 
-d3.csv("pokemon_species.csv", function(speciesData) {
+d3.csv("./data/pokemon_species.csv", function(speciesData) {
 	for (let poke in speciesData) {
 		var isPrimitive = false;
 		var thisType = speciesData[poke].Type
