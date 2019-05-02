@@ -59,9 +59,9 @@ body {
 	left: 100px;
 }
 
-#primitive_pokemons {
-	height: 300px;
-}
+/* #primitive_pokemons {
+	height: 15rem;
+} */
 
 .toolTip {
 	z-index: 200;

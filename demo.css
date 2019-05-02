@@ -1,0 +1,79 @@
+#container {
+  max-width: 70rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+section {
+  margin-bottom: 5rem;
+}
+
+.inline {
+  font-size: 2em;
+  font-weight: 100;
+  display: inline;
+}
+
+.h1-bold {
+  font-size: 2em;
+  font-weight: 600;
+  display: inline;
+}
+
+#section-header {
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: solid 1px #e44c65;
+  width: fit-content;
+}
+
+#thisImg {
+  margin-right: 0.5rem;
+}
+
+#center_evolution {
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
+}
+
+#center_evolution_visible {
+  display: flex;
+  justify-content: center;
+  visibility: visible;
+}
+
+#evolution_chain {
+  margin: 2rem 0;
+  border: solid 1px #e44c65;
+}
+
+.evolutionPokemon {
+  margin: 1rem;
+}
+
+button {
+  border: solid 1px #77e44c;
+  width: 5rem;
+  height: 2rem;
+  background: #1c1d26;
+  color: #77e44c;
+  font-size: 1rem;
+  border-radius: 2px;
+  margin-right: 0.5rem
+}
+
+#Clear {
+  border: solid 1px rgba(255, 255, 255, 0.50);
+  color: rgba(255, 255, 255, 0.50);;
+}
+
+#box {
+  display: inline;
+  margin-right: 2rem;
+}
+
+/* #radarform {
+  display: flex;
+  align-items: flex-end;
+} */

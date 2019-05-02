@@ -1,41 +1,64 @@
 <html>
 	<head>
 		<title>Pokemon Comparison</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 		<link rel="stylesheet" href="main.css" />
+		<link rel="stylesheet" href="demo.css" />
 		<script src="https://d3js.org/d3.v4.min.js"></script>
 
 	</head>
+	
 	<body>
+		<div id='container'>
+			<section>
+				<div id='section-header'>
+					<h1 class='inline'>1. CHOOSE A </h1>
+					<h1 class='h1-bold'>TYPE</h1>
+				</div>
+				<div id="types"></div>
+			</section>
+			<section>
+				<div id='section-header'>
+					<h1 class='inline'>2. SEE WHICH </h1>
+					<h1 class='h1-bold'>HABITATS</h1>
+					<h1 class='inline'>THEY'RE IN</h1>
+				</div>
+				<svg id="habitats"></svg>
+			</section>
+			<section>
+				<div id='section-header'>
+					<h1 class='inline'>3. CLICK TO SEE ITS </h1>
+					<h1 class='h1-bold'>EVOLUTIONS</h1>
+					</div>
+				<div id="primitive_pokemons"></div>
+				<div id='center_evolution'>
+					<div id="evolution_chain"></div>
+				</div>
+			</section>
+			
+			<!-- <svg id="evolution_chain"></svg> -->
 
+			<script src="types.js"></script>
 
-		<div id="types"></div>
-		<svg id="habitats"></svg>
-		<div id="primitive_pokemons"></div>
-		<div id="evolution_chain" height=100></div>
-		<!-- <svg id="evolution_chain"></svg> -->
+			<section>
+				<div id='section-header'>
+						<h1 class='inline'>4. SEARCH ANY POKEMON FOR ITS </h1>
+						<h1 class='h1-bold'>STATS</h1>
+					</div>
+				<div id='input'>
+					<form id='radarform' method="post" action="javascript:radarAdd()" >
+					<input id='box' style="width:200px" type='text' list='pokemons' placeholder='Enter Pokemon' data-list-filter="^">
+					<datalist id='pokemons'></datalist>
+					<button id='Add' type="button" value="Add">Add</button>
+					<button id='Clear' type="button" value="Clear">Clear</button>
+					</form>
+				</div>
 
-
-		<script src="types.js"></script>
-
-
-
-
-		<div id='input'>
-			<form id='radarform' method="post" action="javascript:radarAdd()" >
-			<input id='box' style="width:200px" type='text' list='pokemons' placeholder='Enter Pokemon' data-list-filter="^">
-			<datalist id='pokemons'></datalist>
-			<button id='Add' type="button" value="Add">Add</button>
-			<button id='Clear' type="button" value="Clear">Clear</button>
-			</form>
+				<div id = 'radarchart'></div>
+			</section>
+			
+			<script src="RadarChart.js"></script>			
+			<script src="Radar.js"></script>
 		</div>
-
-		
-		<div id = 'radarchart'></div>
-		
-		
-
-		<script src="RadarChart.js"></script>			
-		<script src="Radar.js"></script>
-
 	</body>
 </html>
