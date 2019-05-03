@@ -140,7 +140,7 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 	}
 
 	for (let typeNum in types) {
-		var typeImage = new Image(50, 19);
+		var typeImage = new Image(50, 58);
 		typeImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		typeImage.alt = types[typeNum];
 		typeImage.className = "typesImg";
@@ -202,10 +202,15 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 
 
 
+<<<<<<< Updated upstream
 									document.getElementById("evolution_chain").appendChild(myImage);
 									tippy('.evolutionPokemon', {
 										content: pokemonName
 									})
+=======
+									// document.getElementById("evolution_chain").appendChild(myImage);
+									document.getElementById("level_"+level.toString()).appendChild(myImage);
+>>>>>>> Stashed changes
 
 
 									// check whether it can evolve to next one
