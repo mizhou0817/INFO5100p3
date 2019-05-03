@@ -101,10 +101,8 @@ const removeOldEvolutionPokemon = () => {
 
 const setAllHabitatsInactive = () => {
 	const activeHabitats = document.getElementsByClassName('habitat-active')
-	if (activeHabitats.length > 0) {
-		for (let x=0; x<activeHabitats.length; x++) {
-			activeHabitats[x].setAttribute('class', 'habitat-inactive')
-		}
+	while (activeHabitats.length > 0) {
+		activeHabitats[0].setAttribute('class', 'habitat-inactive')
 	}
 }
 
