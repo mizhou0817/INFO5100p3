@@ -221,71 +221,26 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 										//console.log(thesePokemons2);
 
 										for (let poke2 in thesePokemons2) {
-
-
 											if (thesePokemons2[poke2].evolvesFrom === id) {
 												continueTrace = true;
 												continueId.push(thesePokemons2[poke2].id)
 												continueName.push(thesePokemons2[poke2].pokemonName);
-
-												
-
 											}
-
 										}
-
-
 									}
-
 
 									//console.log(continueId);
 									return [continueTrace, continueId, continueName];
-
 								}
-
-
-
-
-
-
-
 							}
 
 							document.getElementById("primitive_pokemons").appendChild(pokemonOfTypeImg);
 						}
 					}
 				}
-
 			}
-
 		}
 
-
 		document.getElementById("types").appendChild(typeImage);
-
-		// console.log(myImage);
-		
-
-
 	}
-
-
 });
-
-
-
-
-
-
-
-
-//showPrimitiveImage("Bug");
-
-
-
-
-
-
-
-
-
