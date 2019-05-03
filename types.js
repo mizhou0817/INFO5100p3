@@ -10,24 +10,24 @@ const habitatName = d3.scaleOrdinal()
 
 var habitats = d3.select("svg#habitats")
 				.attr("width", 1000)
-				.attr("height", 90);
+				.attr("height", 110);
 
 function greyHabitats() {
 	for(let i=1; i <= 9; i++) {
 		habitats.append("image")
 				.attr("href", "habitat/"+i.toString()+".png")
-				.attr("x", 84*(i-1))
+				.attr("x", 100*(i-1))
 				.attr("y", 0)
-				.attr("height", 64)
-				.attr("width", 64)
+				.attr("height", 90)
+				.attr("width", 90)
 				.attr('id', i)
 				.attr('class', 'habitat-inactive')
 		habitats.append("text")
 				.text(habitatName(i))
-				.attr("x", 84*(i-1)+30)
-				.attr("y", 80)
+				.attr("x", 100*(i-1)+44)
+				.attr("y", 110)
 				.attr("fill", "white")
-				.attr("font-size", 22);
+				.style("font-size", 15);
 	}
 };
 
@@ -145,7 +145,7 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 	}
 
 	for (let typeNum in types) {
-		var typeImage = new Image(50, 58);
+		var typeImage = new Image(70, 81.2);
 		typeImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		typeImage.alt = types[typeNum];
 		typeImage.id = types[typeNum];
@@ -252,6 +252,11 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 			}
 		}
 
-		document.getElementById("types").appendChild(typeImage);
+		if(typeNum < 9) {
+			document.getElementById("types_row1").appendChild(typeImage);
+		}else {
+			document.getElementById("types_row2").appendChild(typeImage);
+		}
+		// document.getElementById("types").appendChild(typeImage);
 	}
 });
