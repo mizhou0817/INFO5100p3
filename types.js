@@ -163,14 +163,7 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 							const pokemonOfTypeImg = new Image(64, 64);
 							pokemonOfTypeImg.src = "pokemon/" + poke.id + ".png";
 							pokemonOfTypeImg.className = 'type-pokemon';
-							pokemonOfTypeImg.setAttribute('data-tippy-content', pokemonName)
 							pokemonOfTypeImg.classList.add('animated', 'rollIn')
-							console.log(poke);
-							tippy('.type-pokemon')
-							// const tippyIdentifer = '#' + pokemonName
-							// tippy(tippyIdentifer, {
-							// 	content: poke.pokemonName
-							// })
 
 							pokemonOfTypeImg.onclick = function () {
 								removeOldEvolutionPokemon()
@@ -234,8 +227,11 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 
 
 							}
-
+					
 							document.getElementById("primitive_pokemons").appendChild(pokemonOfTypeImg);
+							tippy('.type-pokemon', { //show tooltip
+								content: pokemonName
+							}) 
 						}
 					}
 				}
@@ -248,18 +244,8 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 		document.getElementById("types").appendChild(typeImage);
 
 		// console.log(myImage);
-		
-
-
 	}
-
-
 });
-
-
-
-
-
 
 
 
