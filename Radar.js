@@ -5,10 +5,21 @@ var pokemons;
 function radarAdd(p){
   if (p) {box.value=p}
 
-  var pokemon = pokemons
-  if (box.value){
+  var pokemon = pokemons;
+
+  var tempName = (box.value).charAt(0).toUpperCase() + (box.value).slice(1);
+
+  var isDraw = true;
+  for (poke in radardata) {
+    if (radardata[poke].name === tempName) {
+        isDraw = false;
+    }
+  }
+
+  if (isDraw){
     for (var poke in pokemon){
-      if (pokemon[poke].Name == box.value){
+
+      if (pokemon[poke].Name == tempName){
         //console.log('found poke')
         radardata.push({
           id: pokemon[poke]['#'],
@@ -27,6 +38,8 @@ function radarAdd(p){
       }
     }
     document.getElementById("radarform").reset()
+    //console.log(radardata);
+
     if (radardata.length>0){
       d3.select("#radarchart").selectAll("*").remove();
       d3.select('#toolTip').remove();
@@ -42,6 +55,7 @@ d3.select("#Clear").on("click",function() {
   d3.select('#radarchart').selectAll('polygon').remove()
   d3.select('#radarlegend').remove()
 })
+
 d3.select("#Add").on("click",function(){
   radarAdd()
 })
@@ -68,6 +82,11 @@ d3.csv("./data/Pokemon.csv", function(pokemon) {
   //console.log(pokemon)
   pokemons = pokemon
   radarAdd('Pikachu')
+  radardata=[]
+  d3.select('#radarchart').selectAll('circle').remove()
+  d3.select('#radarchart').selectAll('polygon').remove()
+  d3.select('#radarlegend').remove()
+
 
   d3.select('#pokemons').append('select').selectAll('option').data(pokemon.sort(
     function(a, b){

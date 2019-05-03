@@ -79,6 +79,7 @@ const removeOldTypePokemon = () => {
 }
 
 const removeOldEvolutionPokemon = () => {
+	//console.log('removeOldEvolutionPokemon');
 	const toRemoveEvolutionPokemon = document.getElementsByClassName('evolutionPokemon')
 		
 	while (toRemoveEvolutionPokemon.length > 0) {
@@ -139,10 +140,11 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 	}
 
 	for (let typeNum in types) {
-		var typeImage = new Image(50, 58);
+		var typeImage = new Image(50, 19);
 		typeImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		typeImage.alt = types[typeNum];
 		typeImage.className = "typesImg";
+
 
 		typeImage.onclick = function () {
 			removeOldTypePokemon()
@@ -157,70 +159,87 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 				if (evolvePokemonData[t].type === types[typeNum]) {
 					thesePokemons = evolvePokemonData[t].pokemons;
 
-					for (let poke of thesePokemons) {
-						if (poke.primitive == true) {
-							const { pokemonName } = poke
+					for (let poke in thesePokemons) {
+						if (thesePokemons[poke].primitive == true) {
 							const pokemonOfTypeImg = new Image(64, 64);
-							pokemonOfTypeImg.src = "pokemon/" + poke.id + ".png";
+							pokemonOfTypeImg.src = "pokemon/" + thesePokemons[poke].id + ".png";
 							pokemonOfTypeImg.className = 'type-pokemon';
 							pokemonOfTypeImg.classList.add('animated', 'rollIn')
+
+
 
 							pokemonOfTypeImg.onclick = function () {
 								removeOldEvolutionPokemon()
 
-								var evolutionPokemonImg = new Image(80, 80);
-								evolutionPokemonImg.src = "pokemon/" + poke.id + ".png";
-								evolutionPokemonImg.id = poke.id;
-								evolutionPokemonImg.className = 'evolutionPokemon'
 
-								const evolutionContainer = document.getElementById('center_evolution')
-								if (evolutionContainer !== null) {
-									evolutionContainer.id = 'center_evolution_visible'
-								}
+								//console.log(thesePokemons[poke]);
 
-								document.getElementById("evolution_chain").appendChild(evolutionPokemonImg);
-
-								isEvolve = traceEvolution(poke.id);
-
-								tippy('.evolutionPokemon', {
-									content: pokemonName
-								})
+								isEvolve = traceEvolution(thesePokemons[poke].id, thesePokemons[poke].pokemonName, 1);
 
 
 								for (var evolveDirection in isEvolve[1]) {
-									//console.log(isEvolve[1][evolveDirection]);
-									isEvolve2 = traceEvolution(isEvolve[1][evolveDirection]);
+									isEvolve2 = traceEvolution(isEvolve[1][evolveDirection], isEvolve[2][evolveDirection], 2);
+									
+									for (var evolveDirection2 in isEvolve2[1]) {
+										traceEvolution(isEvolve2[1][evolveDirection2], isEvolve2[2][evolveDirection2], 3);
+
+									}
+
 								}
 
-								function traceEvolution (id) {
-									var thesePokemons2 = [];
+								function traceEvolution (id, pokemonName, level) {
+									// show current pokemon
+									var myImage = new Image(80, 80);
+									myImage.src = "pokemon/" + id + ".png";
+									myImage.id = id;
+									myImage.className = 'evolutionPokemon'
 
+
+									myImage.onclick = function () {
+										//console.log(pokemonName);
+										radarAdd(pokemonName);
+									}
+
+									const evolutionContainer = document.getElementById('center_evolution')
+									if (evolutionContainer !== null) {
+										evolutionContainer.id = 'center_evolution_visible'
+									}
+
+
+
+									document.getElementById("evolution_chain").appendChild(myImage);
+
+
+									// check whether it can evolve to next one
+									var thesePokemons2 = [];
 									var continueTrace = false;
 									var continueId = [];
-
-									// document.querySelector('svg#evolution_chain').innerHTML='';
-
+									var continueName = [];
 									for (let t2 in evolvePokemonData) {
 										thesePokemons2 = evolvePokemonData[t2].pokemons;
 
-										// count how many pokemon have been found in this evolution chain
-										// let count = 1;
+										//console.log(thesePokemons2);
+
 										for (let poke2 in thesePokemons2) {
+
+
 											if (thesePokemons2[poke2].evolvesFrom === id) {
-												continueId.push(thesePokemons2[poke2].id)
-
-												var myImage = new Image(80, 80);
-												myImage.src = "pokemon/" + thesePokemons2[poke2].id + ".png";
-												myImage.id = thesePokemons2[poke2].id;
-												myImage.className = 'evolutionPokemon'
-
-												document.getElementById("evolution_chain").appendChild(myImage)
-
 												continueTrace = true;
+												continueId.push(thesePokemons2[poke2].id)
+												continueName.push(thesePokemons2[poke2].pokemonName);
+
+												
+
 											}
+
 										}
+
+
 									}
-									return [continueTrace, continueId];
+
+
+									//console.log(continueId);
+									return [continueTrace, continueId, continueName];
 
 								}
 
@@ -231,11 +250,8 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 
 
 							}
-					
+
 							document.getElementById("primitive_pokemons").appendChild(pokemonOfTypeImg);
-							tippy('.type-pokemon', { //show tooltip
-								content: pokemonName
-							}) 
 						}
 					}
 				}
@@ -248,8 +264,18 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 		document.getElementById("types").appendChild(typeImage);
 
 		// console.log(myImage);
+		
+
+
 	}
+
+
 });
+
+
+
+
+
 
 
 
