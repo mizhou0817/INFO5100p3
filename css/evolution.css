@@ -15,8 +15,15 @@
 #evolution_chain {
   margin: 2rem 0;
   border: solid 1px #e44c65;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .evolutionPokemon {
   margin: 1rem;
+}
+
+#level_1, #level_2, #level_3 {
+  width: 80px;
+  margin-right: 2rem;
 }
