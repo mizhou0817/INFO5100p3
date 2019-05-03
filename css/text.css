@@ -1,5 +1,5 @@
 h1 {
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
   display: inline
   /* background: linear-gradient(#e44c65, #8d2e2e);
@@ -9,8 +9,8 @@ h1 {
 }
 
 #pokeball {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.8rem;
+  height: 2.8rem;
 }
 
 #title {
