@@ -1,10 +1,31 @@
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  display: inline
+  /* background: linear-gradient(#e44c65, #8d2e2e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+#pokeball {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+#title {
+  margin-bottom: 2rem;
+  /* text-shadow: 1rem 1rem rgba(0, 0, 0 0.8); */
+  text-shadow: 0.5rem 0.5rem rgba(89, 30, 40, 1)
+}
+
 .inline {
   font-size: 2em;
   font-weight: 100;
   display: inline;
 }
 
-.h1-bold {
+.h2-bold {
   font-size: 2em;
   font-weight: 600;
   display: inline;
