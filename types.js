@@ -182,6 +182,10 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 
 								isEvolve = traceEvolution(poke.id);
 
+								tippy('.evolutionPokemon', {
+									content: pokemonName
+								})
+
 
 								for (var evolveDirection in isEvolve[1]) {
 									//console.log(isEvolve[1][evolveDirection]);
