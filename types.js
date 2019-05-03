@@ -159,23 +159,18 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 				if (evolvePokemonData[t].type === types[typeNum]) {
 					thesePokemons = evolvePokemonData[t].pokemons;
 
-					for (let poke in thesePokemons) {
-						if (thesePokemons[poke].primitive == true) {
+					for (let poke of thesePokemons) {
+						if (poke.primitive == true) {
+							const name = poke.pokemonName
 							const pokemonOfTypeImg = new Image(64, 64);
-							pokemonOfTypeImg.src = "pokemon/" + thesePokemons[poke].id + ".png";
+							pokemonOfTypeImg.src = "pokemon/" + poke.id + ".png";
 							pokemonOfTypeImg.className = 'type-pokemon';
 							pokemonOfTypeImg.classList.add('animated', 'rollIn')
-
-
 
 							pokemonOfTypeImg.onclick = function () {
 								removeOldEvolutionPokemon()
 
-
-								//console.log(thesePokemons[poke]);
-
-								isEvolve = traceEvolution(thesePokemons[poke].id, thesePokemons[poke].pokemonName, 1);
-
+								isEvolve = traceEvolution(poke.id, name, 1);
 
 								for (var evolveDirection in isEvolve[1]) {
 									isEvolve2 = traceEvolution(isEvolve[1][evolveDirection], isEvolve[2][evolveDirection], 2);
@@ -184,8 +179,8 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 										traceEvolution(isEvolve2[1][evolveDirection2], isEvolve2[2][evolveDirection2], 3);
 
 									}
-
 								}
+
 
 								function traceEvolution (id, pokemonName, level) {
 									// show current pokemon
@@ -208,6 +203,9 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 
 
 									document.getElementById("evolution_chain").appendChild(myImage);
+									tippy('.evolutionPokemon', {
+										content: pokemonName
+									})
 
 
 									// check whether it can evolve to next one
@@ -235,6 +233,9 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 							}
 
 							document.getElementById("primitive_pokemons").appendChild(pokemonOfTypeImg);
+							tippy('.type-pokemon', {
+								content: name
+							})
 						}
 					}
 				}
