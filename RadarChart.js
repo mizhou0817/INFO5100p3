@@ -165,17 +165,23 @@ var RadarChart = {
               })
                .style("fill-opacity", cfg.opacityArea)
                .on('mouseover', function (d){
+
+                //console.log("hi1");
+
                         z = "polygon."+d3.select(this).attr("class");
                         g.selectAll("polygon")
                          .transition(200)
                          .style("fill-opacity", 0.1); 
                         g.selectAll(z)
                          .transition(200)
-                         .style("fill-opacity", .7);
+                         .style("fill-opacity", .5);
                         
                         })
 
                .on('mousemove', function(){
+
+                //console.log(data[this.id]);
+
                           tooltip
                          .style("display", "inline-block")
                          .html((data[this.id].name))
@@ -242,13 +248,56 @@ var RadarChart = {
         series++;
       };
       series=0;
-      console.log(unsorted)
-      console.log(data)
+      //console.log(unsorted)
+      //console.log(data)
       var radarlegend = g.append('g').attr('id','radarlegend').attr('class','radarlegend').selectAll('g').data(unsorted).enter().append('g').attr("transform", function(d, i) { return "translate("+(cfg.TranslateX+250)+"," + (i * 20 + 50)+")"; });
-      radarlegend.append('circle').attr('r',6).attr('fill',function(d){return d.color}).attr('stroke','black')
+      //radarlegend.append('circle').attr('r',6).attr('fill',function(d){return d.color}).attr('stroke','black')
       radarlegend.append('text').attr('x',0.5).attr('y',3)
-        .style('text-align','center').style('font-size','10px').style('fill','white').style('text-shadow','1px 1px #000000')
-      radarlegend.append('text').attr('x',60).attr('y',4).text(function(d) { return d.name }).attr("fill", "white");
+                 .style('text-align','center').style('font-size','10px').style('fill','white').style('text-shadow','1px 1px #000000')
+      radarlegend.append('text')
+                 .attr('x',60).attr('y',4).text(function(d) { return d.name })
+                 .attr("fill", function(d){return d.color})
+                 .data([dataValues])
+                 .attr('id', key)
+                 .on('mouseover', function (d){
+
+                      z = "polygon."+d3.select(this).attr("class");
+                      g.selectAll("polygon")
+                       .transition(200)
+                       .style("fill-opacity", 0.1); 
+                      g.selectAll(z)
+                       .transition(200)
+                       .style("fill-opacity", .5);
+
+                    console.log(z);
+                 })
+
+               .on('mousemove', function(){
+
+                //console.log(data[this.id]);
+
+                          tooltip
+                         .style("display", "inline-block")
+                         .html((data[this.id].name))
+                         .style("left", d3.event.pageX-(document.getElementById("toolTip").getBoundingClientRect().width/2) + "px")
+                         .style("top", d3.event.pageY- 50+ "px")
+
+                        var src = "pokemon/" + data[this.id]['id'] + ".png";
+                  
+                        pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
+                        })
+
+
+
+                 .on('mouseout', function(){
+                        radarlegend.selectAll("text")
+                         .transition(200)
+                         .style("fill-opacity", 1);
+                        tooltip.style("display", "none");
+                        pic.transition()
+                        .duration(50).style("display", "none");
+                 });
+
 
     }
 };
