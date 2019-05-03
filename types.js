@@ -71,6 +71,13 @@ for (let typeNum in types){
 // svg containing the evolution chain
 var chain = d3.select("svg#evolution_chain");
 
+const removeOldTypeSelected = () => {
+	const toRemoveTypesPokemon = document.getElementsByClassName('typesImg active')
+
+	if (toRemoveTypesPokemon.length > 0)
+		toRemoveTypesPokemon[0].className = 'typesImg'
+}
+
 const removeOldTypePokemon = () => {
 	const toRemoveTypesPokemon = document.getElementsByClassName('type-pokemon')
 	while (toRemoveTypesPokemon.length > 0) {
@@ -143,13 +150,17 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 		var typeImage = new Image(50, 58);
 		typeImage.src = "types/" + types[typeNum].toLowerCase() + ".gif";
 		typeImage.alt = types[typeNum];
+		typeImage.id = types[typeNum];
 		typeImage.className = "typesImg";
 
-
 		typeImage.onclick = function () {
+			removeOldTypeSelected()
 			removeOldTypePokemon()
 			removeOldEvolutionPokemon()
 			setAllHabitatsInactive()
+			const typeElem = document.getElementById(types[typeNum]);
+			typeElem.classList.toggle('active')
+
 
 			setYourHabitatActive(this.alt)
 

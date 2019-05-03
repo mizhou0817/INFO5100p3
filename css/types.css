@@ -5,7 +5,8 @@
   transition-property: opacity, transform;
 }
 
-.typesImg:hover {
+.typesImg:hover,
+.active {
   opacity: 1;
   transform: scale(1.1);
-}
+} 
