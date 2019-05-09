@@ -138,7 +138,8 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 					pokemonName: speciesData[poke].identifier,
 					id: speciesData[poke].id,
 					primitive: isPrimitive,
-					evolvesFrom: speciesData[poke].evolves_from_species_id
+					evolvesFrom: speciesData[poke].evolves_from_species_id,
+					evolutionTrigger: speciesData[poke].evolution_trigger,
 				})
 			}
 		}
@@ -158,7 +159,6 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 			setAllHabitatsInactive()
 			const typeElem = document.getElementById(types[typeNum]);
 			typeElem.classList.toggle('active')
-
 
 			setYourHabitatActive(this.alt)
 
@@ -190,14 +190,16 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 									}
 								}
 
-
 								function traceEvolution (id, pokemonName, level) {
-									// show current pokemon
+									console.log(speciesData);
+									console.log(id);
+									console.log(speciesData[id - 1]);
+									const evolutionTrigger = speciesData[id - 1]['evolution_trigger']
+									console.log(evolutionTrigger);
 									var myImage = new Image(80, 80);
 									myImage.src = "pokemon/" + id + ".png";
 									myImage.id = id;
 									myImage.className = 'evolutionPokemon'
-
 
 									myImage.onclick = function () {
 										//console.log(pokemonName);
@@ -209,9 +211,10 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 										evolutionContainer.id = 'center_evolution_visible'
 									}
 
+									const content = pokemonName + '<br/>' + evolutionTrigger
 									document.getElementById("evolution_chain").appendChild(myImage);
 									tippy('.evolutionPokemon', {
-										content: pokemonName
+										content
 									})
 
 									// document.getElementById("evolution_chain").appendChild(myImage);
@@ -241,7 +244,7 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 									return [continueTrace, continueId, continueName];
 								}
 							}
-
+							
 							document.getElementById("primitive_pokemons").appendChild(pokemonOfTypeImg);
 							tippy('.type-pokemon', {
 								content: name
