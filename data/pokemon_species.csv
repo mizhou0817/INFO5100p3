@@ -184,7 +184,7 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 183,marill,2,298,90,2,6,9,4,190,70,0,10,0,3,0,212,Water,Level up
 184,azumarill,2,183,90,2,6,9,4,75,70,0,10,0,3,0,213,Water,evolves at lv.18
 185,sudowoodo,2,438,91,3,12,2,4,65,70,0,20,1,2,0,215,Rock,Level up
-186,politoed,2,61,26,5,12,9,4,45,70,0,20,1,4,0,68,Water,Evolves with trading kings-rock
+186,politoed,2,61,26,5,12,9,4,45,70,0,20,1,4,0,68,Water,evolves by trading kings-rock
 187,hoppip,2,,92,6,6,3,4,255,70,0,20,0,4,0,216,Grass,
 188,skiploom,2,187,92,5,6,3,4,120,70,0,20,0,4,0,217,Grass,evolves at lv.18
 189,jumpluff,2,188,92,2,6,3,4,45,70,0,20,0,4,0,218,Grass,evolves at lv.27
@@ -197,7 +197,7 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 196,espeon,2,133,67,7,8,8,1,45,70,0,35,0,2,0,161,Psychic,Level up
 197,umbreon,2,133,67,1,8,8,1,45,35,0,35,0,2,0,162,Dark,Level up
 198,murkrow,2,,97,1,9,2,4,30,35,0,20,1,4,0,227,Dark,
-199,slowking,2,79,33,6,6,9,4,70,70,0,20,0,2,0,87,Water,Evolves with trading kings-rock
+199,slowking,2,79,33,6,6,9,4,70,70,0,20,0,2,0,87,Water,evolves by trading kings-rock
 200,misdreavus,2,,98,4,1,1,4,45,35,0,25,0,3,0,229,Ghost,
 201,unown,2,,99,1,1,5,-1,225,70,0,40,0,2,0,231,Psychic,
 202,wobbuffet,2,360,100,2,5,1,4,45,70,0,20,1,2,0,233,Psychic,evolves at lv.15
@@ -206,11 +206,11 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 205,forretress,2,204,102,7,1,2,4,75,70,0,20,0,2,0,236,Bug,evolves at lv.31
 206,dunsparce,2,,103,10,2,1,4,190,70,0,20,0,2,0,237,Normal,
 207,gligar,2,,104,7,9,4,4,60,70,0,20,1,4,0,238,Ground,
-208,steelix,2,95,41,4,2,1,4,25,70,0,25,1,2,1,104,Steel,Evolves with trading metal-coat
+208,steelix,2,95,41,4,2,1,4,25,70,0,25,1,2,1,104,Steel,evolves by trading metal-coat
 209,snubbull,2,,105,6,12,8,6,190,70,0,20,0,3,0,240,Fairy,
 210,granbull,2,209,105,7,6,8,6,75,70,0,20,0,3,0,241,Fairy,evolves at lv.23
 211,qwilfish,2,,106,4,3,7,4,45,70,0,20,0,2,0,242,Water,
-212,scizor,2,123,58,8,13,3,4,25,70,0,25,1,2,1,142,Bug,Evolves with trading metal-coat
+212,scizor,2,123,58,8,13,3,4,25,70,0,25,1,2,1,142,Bug,evolves by trading metal-coat
 213,shuckle,2,,107,10,14,4,4,190,70,0,20,0,4,0,243,Bug,
 214,heracross,2,,108,2,12,2,4,45,70,0,25,1,1,1,244,Bug,
 215,sneasel,2,,109,1,6,2,4,60,35,0,20,1,4,0,245,Dark,
@@ -228,10 +228,10 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 227,skarmory,2,,117,4,9,6,4,25,70,0,25,0,1,0,260,Steel,
 228,houndour,2,,118,1,8,6,4,120,35,0,20,0,1,0,261,Dark,
 229,houndoom,2,228,118,1,8,6,4,45,35,0,20,1,1,1,262,Dark,evolves at lv.24
-230,kingdra,2,117,54,2,5,7,4,45,70,0,20,0,2,0,134,Water,Evolves with trading dragon-scale
+230,kingdra,2,117,54,2,5,7,4,45,70,0,20,0,2,0,134,Water,evolves by trading dragon-scale
 231,phanpy,2,,119,2,8,6,4,120,70,0,20,0,2,0,263,Ground,
 232,donphan,2,231,119,4,8,6,4,60,70,0,20,1,2,0,264,Ground,evolves at lv.25
-233,porygon2,2,137,68,8,7,8,-1,45,70,0,20,0,2,0,167,Normal,Evolves with trading up-grade
+233,porygon2,2,137,68,8,7,8,-1,45,70,0,20,0,2,0,167,Normal,evolves by trading up-grade
 234,stantler,2,,120,3,8,2,4,45,70,0,20,0,1,0,265,Normal,
 235,smeargle,2,,121,9,6,8,4,45,70,0,20,0,3,0,266,Normal,
 236,tyrogue,2,,47,7,12,8,0,75,70,1,25,0,2,0,115,Fighting,
@@ -365,8 +365,8 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 364,sealeo,3,363,187,2,3,7,4,120,70,0,20,0,4,0,394,Ice,evolves at lv.32
 365,walrein,3,364,187,2,8,7,4,45,70,0,20,0,4,0,395,Ice,evolves at lv.44
 366,clamperl,3,,188,2,1,7,4,255,70,0,20,0,5,0,396,Water,
-367,huntail,3,366,188,2,2,7,4,60,70,0,20,0,5,0,397,Water,Evolves with trading deep-sea-tooth
-368,gorebyss,3,366,188,6,2,7,4,60,70,0,20,0,5,0,398,Water,Evolves with trading deep-sea-scale
+367,huntail,3,366,188,2,2,7,4,60,70,0,20,0,5,0,397,Water,evolves by trading deep-sea-tooth
+368,gorebyss,3,366,188,6,2,7,4,60,70,0,20,0,5,0,398,Water,evolves by trading deep-sea-scale
 369,relicanth,3,,189,4,3,7,1,25,70,0,40,1,1,0,399,Water,
 370,luvdisc,3,,190,6,3,7,6,225,70,0,20,0,3,0,400,Water,
 371,bagon,3,,191,2,12,6,4,45,35,0,40,0,1,0,401,Dragon,
@@ -462,20 +462,20 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 461,weavile,4,215,109,1,6,,4,45,35,0,20,1,4,0,246,Dark,Level up
 462,magnezone,4,82,34,4,4,,-1,30,70,0,20,0,2,0,90,Electric,Level up
 463,lickilicky,4,108,48,6,12,,4,30,70,0,20,0,2,0,120,Normal,Level up
-464,rhyperior,4,112,50,4,6,,4,30,70,0,20,1,1,0,125,Ground,Evolves with trading protector
+464,rhyperior,4,112,50,4,6,,4,30,70,0,20,1,1,0,125,Ground,evolves by trading protector
 465,tangrowth,4,114,52,2,12,,4,30,70,0,20,1,2,0,130,Grass,Level up
-466,electivire,4,125,60,10,6,,2,30,70,0,25,0,2,0,147,Electric,Evolves with trading electirizer
-467,magmortar,4,126,61,8,6,,2,30,70,0,25,0,2,0,150,Fire,Evolves with trading magmarizer
+466,electivire,4,125,60,10,6,,2,30,70,0,25,0,2,0,147,Electric,evolves by trading electirizer
+467,magmortar,4,126,61,8,6,,2,30,70,0,25,0,2,0,150,Fire,evolves by trading magmarizer
 468,togekiss,4,176,87,9,9,,1,30,70,0,10,0,3,0,205,Fairy,evolves with shiny-stone
 469,yanmega,4,193,95,5,13,,4,30,70,0,20,0,2,0,224,Bug,Level up
 470,leafeon,4,133,67,5,8,,1,45,35,0,35,0,2,0,163,Grass,Level up
 471,glaceon,4,133,67,2,8,,1,45,35,0,35,0,2,0,164,Ice,Level up
 472,gliscor,4,207,104,7,9,,4,30,70,0,20,0,4,0,239,Ground,Level up
 473,mamoswine,4,221,112,3,8,,4,50,70,0,20,1,1,0,253,Ice,Level up
-474,porygon-z,4,233,68,8,4,,-1,30,70,0,20,0,2,0,168,Normal,Evolves with trading dubious-disc
+474,porygon-z,4,233,68,8,4,,-1,30,70,0,20,0,2,0,168,Normal,evolves by trading dubious-disc
 475,gallade,4,281,140,9,12,,0,45,35,0,20,0,1,1,308,Psychic,evolves with dawn-stone
 476,probopass,4,299,147,4,11,,4,60,70,0,20,0,2,0,325,Rock,Level up
-477,dusknoir,4,356,182,1,4,,4,45,35,0,25,0,3,0,385,Ghost,Evolves with trading reaper-cloth
+477,dusknoir,4,356,182,1,4,,4,45,35,0,25,0,3,0,385,Ghost,evolves by trading reaper-cloth
 478,froslass,4,361,186,9,4,,8,75,70,0,20,0,2,0,392,Ice,evolves with dawn-stone
 479,rotom,4,,240,8,1,,-1,45,70,0,20,0,2,1,480,Electric,
 480,uxie,4,,241,10,6,,-1,3,140,0,80,0,1,0,481,Psychic,
@@ -681,9 +681,9 @@ id,identifier,generation_id,evolves_from_species_id,evolution_chain_id,color_id,
 680,doublade,6,679,349,3,11,,4,90,70,0,20,0,2,0,681,Steel,evolves at lv.35
 681,aegislash,6,680,349,3,5,,4,45,70,0,20,0,2,1,682,Steel,evolves with dusk-stone
 682,spritzee,6,,350,6,4,,4,200,70,0,20,0,2,0,683,Fairy,
-683,aromatisse,6,682,350,6,12,,4,140,70,0,20,0,2,0,684,Fairy,Evolves with trading sachet
+683,aromatisse,6,682,350,6,12,,4,140,70,0,20,0,2,0,684,Fairy,evolves by trading sachet
 684,swirlix,6,,351,9,7,,4,200,70,0,20,0,2,0,685,Fairy,
-685,slurpuff,6,684,351,9,12,,4,140,70,0,20,0,2,0,686,Fairy,Evolves with trading whipped-dream
+685,slurpuff,6,684,351,9,12,,4,140,70,0,20,0,2,0,686,Fairy,evolves by trading whipped-dream
 686,inkay,6,,352,2,10,,4,190,70,0,20,0,2,0,687,Dark,
 687,malamar,6,686,352,2,5,,4,80,70,0,20,0,2,0,688,Dark,evolves at lv.30
 688,binacle,6,,353,3,11,,4,120,70,0,20,0,2,0,689,Rock,
