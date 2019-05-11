@@ -145,7 +145,8 @@ var RadarChart = {
                .data([dataValues])
                .enter()
                .append("polygon")
-               .attr("class", "radar-chart-serie"+series)
+               .attr("class", () => `radar-${d[key].name}`)
+               //.attr("class", "radar-chart-serie"+series)
                .attr('id',key)
                .style("stroke-width", "2px")
                .style("stroke",function(j,i){
@@ -206,7 +207,8 @@ var RadarChart = {
         g.selectAll(".nodes")
           .data(d[key].axis).enter()
           .append("circle")
-        .attr("class", "radar-chart-serie"+series)
+          .attr("class", () => `radar-${d[key].name}`)
+        //.attr("class", "radar-chart-serie"+series)
         .attr('id',key)
         .attr('r', cfg.radius)
         .attr("alt", function(j){
@@ -258,14 +260,17 @@ var RadarChart = {
                  .style('text-align','center').style('font-size','10px').style('fill','white').style('text-shadow','1px 1px #000000')
 
       radarlegend.append('text')
+                  .attr('class', d => `radar-${d.name}`)
                  .attr('x',120).attr('y',4).text("X")
                  .attr("fill", function(d){return d.color})
                  .on('click', function (d){
-
-                    radardata.remove
-
-
-                    console.log("Hello");
+                  console.log('X clicked');
+                  console.log(radardata);
+                  radardata = radardata.filter(radarPokemon => radarPokemon.name !== d.name)
+                  const radarPokemon = document.getElementsByClassName(`radar-${d.name}`)
+                  while (radarPokemon.length > 0) {
+                    radarPokemon[0].parentNode.removeChild(radarPokemon[0])
+                  }
                  })
 
 
@@ -274,6 +279,7 @@ var RadarChart = {
       radarlegend.append('text')
                  .attr('x',60).attr('y',4).text(function(d) { return d.name })
                  .attr("fill", function(d){return d.color})
+                 .attr('class', d => `radar-${d.name}`)
                  .data([dataValues])
                  .attr('id', key)
                  .on('mouseover', function (d){
