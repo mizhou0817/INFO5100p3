@@ -179,34 +179,35 @@ var RadarChart = {
               })
                .style("fill-opacity", cfg.opacityArea)
                .on('mouseover', function (){
-                 console.log(d[key]);
-                 const { catchRate, height, gen, weight } = d[key]
+                 thisID = d[this.id];
+                 //const { catchRate, height, gen, weight } = d[key]
 
                   const liNode1 = document.createElement('LI')
                   liNode1.className = 'radar-facts-li'
-                  const textNode1 = document.createTextNode(`Catch Rate: ${catchRate}%`)
+                  const textNode1 = document.createTextNode(`Catch Rate: ${thisID.catchRate}%`)
                   liNode1.appendChild(textNode1)
 
                   const liNode2 = document.createElement('LI')
                   liNode2.className = 'radar-facts-li'
-                  const textNode2 = document.createTextNode(`Height: ${height}m`)
+                  const textNode2 = document.createTextNode(`Height: ${thisID.height}m`)
                   liNode2.appendChild(textNode2)
 
                   const liNode3 = document.createElement('LI')
                   liNode3.className = 'radar-facts-li'
-                  const textNode3 = document.createTextNode(`Gen: ${gen}`)
+                  const textNode3 = document.createTextNode(`Generation: ${thisID.gen}`)
                   liNode3.appendChild(textNode3)
 
                   const liNode4 = document.createElement('LI')
                   liNode4.className = 'radar-facts-li'
-                  const textNode4 = document.createTextNode(`Weight: ${weight}kg`)
+                  const textNode4 = document.createTextNode(`Weight: ${thisID.weight}kg`)
                   liNode4.appendChild(textNode4)
 
-                  document.getElementById('radar-facts').appendChild(liNode1)
-                  document.getElementById('radar-facts').appendChild(liNode2)
-                  document.getElementById('radar-facts').appendChild(liNode3)
-                  document.getElementById('radar-facts').appendChild(liNode4)
 
+                  document.getElementById('radar-facts').appendChild(liNode2)
+
+                  document.getElementById('radar-facts').appendChild(liNode4)
+                  document.getElementById('radar-facts').appendChild(liNode3)
+                  document.getElementById('radar-facts').appendChild(liNode1)
                   //ul.append(liNode1)
 
                   z = "polygon."+d3.select(this).attr("class");
@@ -215,13 +216,12 @@ var RadarChart = {
                     .style("fill-opacity", 0.1); 
                   g.selectAll(z)
                     .transition(200)
-                    .style("fill-opacity", .5);
+                    .style("fill-opacity", .8);
                   
                   })
 
                .on('mousemove', function(){
 
-                //console.log(data[this.id]);
                           tooltip
                          .style("display", "inline-block")
                          .html((data[this.id].name))
@@ -306,7 +306,7 @@ var RadarChart = {
 
       radarlegend.append('text')
                   .attr('class', d => `radar-${d.name}`)
-                 .attr('x',120).attr('y',4).text("X")
+                 .attr('x',125).attr('y',4).text("X")
                  .attr("fill", 'red')
                  .on('click', function (d){
                   radardata = radardata.filter(radarPokemon => radarPokemon.name !== d.name)
@@ -331,6 +331,35 @@ var RadarChart = {
                         var src = "pokemon/" + d.id + ".png";
                   
                         pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
+
+                        const liNode1 = document.createElement('LI')
+                        liNode1.className = 'radar-facts-li'
+                        const textNode1 = document.createTextNode(`Catch Rate: ${d.catchRate}%`)
+                        liNode1.appendChild(textNode1)
+
+                        const liNode2 = document.createElement('LI')
+                        liNode2.className = 'radar-facts-li'
+                        const textNode2 = document.createTextNode(`Height: ${d.height}m`)
+                        liNode2.appendChild(textNode2)
+
+                        const liNode3 = document.createElement('LI')
+                        liNode3.className = 'radar-facts-li'
+                        const textNode3 = document.createTextNode(`Generation: ${d.gen}`)
+                        liNode3.appendChild(textNode3)
+
+                        const liNode4 = document.createElement('LI')
+                        liNode4.className = 'radar-facts-li'
+                        const textNode4 = document.createTextNode(`Weight: ${d.weight}kg`)
+                        liNode4.appendChild(textNode4)
+
+
+                        document.getElementById('radar-facts').appendChild(liNode2)
+
+                        document.getElementById('radar-facts').appendChild(liNode4)
+                        document.getElementById('radar-facts').appendChild(liNode3)
+                        document.getElementById('radar-facts').appendChild(liNode1)
+
+
 
 
 
@@ -366,6 +395,12 @@ var RadarChart = {
                         tooltip.style("display", "none");
                         pic.transition()
                         .duration(50).style("display", "none");
+
+                        const radarLiNodes = document.getElementsByClassName('radar-facts-li')
+                        while (radarLiNodes.length > 0) {
+                          radarLiNodes[0].parentNode.removeChild(radarLiNodes[0])
+                        }
+
                  })
                  ;
 
