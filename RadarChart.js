@@ -175,7 +175,7 @@ var RadarChart = {
                          .style("fill-opacity", 0.1); 
                         g.selectAll(z)
                          .transition(200)
-                         .style("fill-opacity", .5);
+                         .style("fill-opacity", .9);
                         
                         })
 
@@ -262,7 +262,7 @@ var RadarChart = {
       radarlegend.append('text')
                   .attr('class', d => `radar-${d.name}`)
                  .attr('x',120).attr('y',4).text("X")
-                 .attr("fill", function(d){return d.color})
+                 .attr("fill", 'red')
                  .on('click', function (d){
                   radardata = radardata.filter(radarPokemon => radarPokemon.name !== d.name)
                   const radarPokemon = document.getElementsByClassName(`radar-${d.name}`)
@@ -274,7 +274,54 @@ var RadarChart = {
       radarlegend.append('text')
                  .attr('x',60).attr('y',4).text(function(d) { return d.name })
                  .attr("fill", function(d){return d.color})
-                 .attr('class', d => `radar-${d.name}`);
+                 .attr('class', d => `radar-${d.name}`)
+                 .on('mouseover', function(d) {
+                        tooltip
+                         .style("display", "inline-block")
+                         .html(d.name)
+                         .style("left", d3.event.pageX-(document.getElementById("toolTip").getBoundingClientRect().width/2) + "px")
+                         .style("top", d3.event.pageY- 50+ "px");
+
+                        var src = "pokemon/" + d.id + ".png";
+                  
+                        pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
+
+
+
+                        z = "polygon."+d3.select(this).attr("class");
+                        g.selectAll("polygon")
+                         .transition(200)
+                         .style("fill-opacity", 0.1); 
+                        g.selectAll(z)
+                         .transition(200)
+                         .style("fill-opacity", .8);
+                 })
+                 .on('mousemove', function(d){
+                        tooltip
+                         .style("display", "inline-block")
+                         .html(d.name)
+                         .style("left", d3.event.pageX-(document.getElementById("toolTip").getBoundingClientRect().width/2) + "px")
+                         .style("top", d3.event.pageY- 50+ "px");
+
+                        var src = "pokemon/" + d.id + ".png";
+                  
+                        pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
+                        })
+                 .on('mouseout', function(){
+                        radarlegend.selectAll("text")
+                         .transition(200)
+                         .style("fill-opacity", 1);
+
+
+
+                        g.selectAll("polygon")
+                         .transition(200)
+                         .style("fill-opacity", cfg.opacityArea);
+                        tooltip.style("display", "none");
+                        pic.transition()
+                        .duration(50).style("display", "none");
+                 })
+                 ;
 
 
     }
