@@ -177,6 +177,9 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 							pokemonOfTypeImg.classList.add('animated', 'rollIn')
 
 							pokemonOfTypeImg.onclick = function () {
+
+								document.getElementById("click_reminder").innerHTML = '';
+
 								removeOldEvolutionPokemon()
 
 								isEvolve = traceEvolution(poke.id, name, 1);
@@ -243,6 +246,9 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 									//console.log(continueId);
 									return [continueTrace, continueId, continueName];
 								}
+
+								var div = document.getElementById('click_reminder');
+								div.innerHTML += '(Click for Stats Below)';
 							}
 							
 							document.getElementById("primitive_pokemons").appendChild(pokemonOfTypeImg);
