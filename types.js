@@ -191,11 +191,8 @@ d3.csv("./data/pokemon_species.csv", function(speciesData) {
 								}
 
 								function traceEvolution (id, pokemonName, level) {
-									console.log(speciesData);
-									console.log(id);
-									console.log(speciesData[id - 1]);
 									const evolutionTrigger = speciesData[id - 1]['evolution_trigger']
-									console.log(evolutionTrigger);
+
 									var myImage = new Image(80, 80);
 									myImage.src = "pokemon/" + id + ".png";
 									myImage.id = id;

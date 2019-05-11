@@ -1,3 +1,17 @@
+#radar-facts {
+  position: absolute;
+  right: 8rem;
+  bottom: 5rem;
+}
+
+#radar-facts-container {
+  position: relative;
+}
+
+#radar-facts li {
+  display: block;
+}
+
 #container {
   max-width: 70rem;
   margin: 0 auto;

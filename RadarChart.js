@@ -56,7 +56,20 @@ var RadarChart = {
 
 	  //var tooltip;
     var tooltip = d3.select("body").append("div").attr("class", "toolTip").attr('id','toolTip');
+
+    // const pokemonInfoContainer = d3.select(id).append('div').attr('id', 'pokemonInfoContainer')
+    // const tempImg = document.createElement('img')
+    // tempImg.className = 'pokemonImage'
+    // document.getElementById("pokemonInfoContainer").appendChild(tempImg);
+    // const ulNode = document.createElement('ul')
+    // ulNode.className = 'radar-facts'
+    // console.log(ulNode);
+    // document.getElementById("pokemonInfoContainer").appendChild(ulNode);
+
     var pic = d3.select(id).append('img')
+    //const pic = d3.select('pokemonImage')
+
+    //const ul = d3.select(id).append('ul').attr('id', 'radar-facts')
     //Circular segments
     for(var j=0; j<cfg.levels; j++){
       var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
@@ -165,24 +178,50 @@ var RadarChart = {
                 // return cfg.color(series)
               })
                .style("fill-opacity", cfg.opacityArea)
-               .on('mouseover', function (d){
+               .on('mouseover', function (){
+                 console.log(d[key]);
+                 const { catchRate, height, gen, weight } = d[key]
 
-                //console.log("hi1");
+                  const liNode1 = document.createElement('LI')
+                  liNode1.className = 'radar-facts-li'
+                  const textNode1 = document.createTextNode(`Catch Rate: ${catchRate}%`)
+                  liNode1.appendChild(textNode1)
 
-                        z = "polygon."+d3.select(this).attr("class");
-                        g.selectAll("polygon")
-                         .transition(200)
-                         .style("fill-opacity", 0.1); 
-                        g.selectAll(z)
-                         .transition(200)
-                         .style("fill-opacity", .5);
-                        
-                        })
+                  const liNode2 = document.createElement('LI')
+                  liNode2.className = 'radar-facts-li'
+                  const textNode2 = document.createTextNode(`Height: ${height}m`)
+                  liNode2.appendChild(textNode2)
+
+                  const liNode3 = document.createElement('LI')
+                  liNode3.className = 'radar-facts-li'
+                  const textNode3 = document.createTextNode(`Gen: ${gen}`)
+                  liNode3.appendChild(textNode3)
+
+                  const liNode4 = document.createElement('LI')
+                  liNode4.className = 'radar-facts-li'
+                  const textNode4 = document.createTextNode(`Weight: ${weight}kg`)
+                  liNode4.appendChild(textNode4)
+
+                  document.getElementById('radar-facts').appendChild(liNode1)
+                  document.getElementById('radar-facts').appendChild(liNode2)
+                  document.getElementById('radar-facts').appendChild(liNode3)
+                  document.getElementById('radar-facts').appendChild(liNode4)
+
+                  //ul.append(liNode1)
+
+                  z = "polygon."+d3.select(this).attr("class");
+                  g.selectAll("polygon")
+                    .transition(200)
+                    .style("fill-opacity", 0.1); 
+                  g.selectAll(z)
+                    .transition(200)
+                    .style("fill-opacity", .5);
+                  
+                  })
 
                .on('mousemove', function(){
 
                 //console.log(data[this.id]);
-
                           tooltip
                          .style("display", "inline-block")
                          .html((data[this.id].name))
@@ -190,7 +229,7 @@ var RadarChart = {
                          .style("top", d3.event.pageY- 50+ "px")
 
                         var src = "pokemon/" + data[this.id]['id'] + ".png";
-                  
+
                         pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
                         })
 
@@ -201,6 +240,11 @@ var RadarChart = {
                         tooltip.style("display", "none");
                         pic.transition()
                         .duration(50).style("display", "none");
+
+                        const radarLiNodes = document.getElementsByClassName('radar-facts-li')
+                        while (radarLiNodes.length > 0) {
+                          radarLiNodes[0].parentNode.removeChild(radarLiNodes[0])
+	                      }
                });
 
 
@@ -244,6 +288,7 @@ var RadarChart = {
                 .html((data[this.id].name)+"<br>"+(d.stat) + "<br><span>" + (d.value) + "</span>")
                 .style("left", d3.event.pageX-(document.getElementById("toolTip").getBoundingClientRect().width/2)+ "px")
                 .style("top", d3.event.pageY - 95 + "px")
+
               })
          .on("mouseout", function(d){ tooltip.style("display", "none");});
         // }    
@@ -294,7 +339,6 @@ var RadarChart = {
 
                     console.log(z);
                  })
-
                .on('mousemove', function(){
 
                 //console.log(data[this.id]);
@@ -309,9 +353,6 @@ var RadarChart = {
                   
                         pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
                         })
-
-
-
                  .on('mouseout', function(){
                         radarlegend.selectAll("text")
                          .transition(200)
