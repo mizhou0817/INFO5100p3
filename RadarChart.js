@@ -320,23 +320,7 @@ var RadarChart = {
                  .attr('x',60).attr('y',4).text(function(d) { return d.name })
                  .attr("fill", function(d){return d.color})
                  .attr('class', d => `radar-${d.name}`)
-<<<<<<< HEAD
-                 .data([dataValues])
-                 .attr('id', key)
-                 .on('mouseover', function (d){
 
-                      z = "polygon."+d3.select(this).attr("class");
-                      g.selectAll("polygon")
-                       .transition(200)
-                       .style("fill-opacity", 0.1); 
-                      g.selectAll(z)
-                       .transition(200)
-                       .style("fill-opacity", .5);
-
-                    console.log(z);
-                 })
-               .on('mousemove', function(){
-=======
                  .on('mouseover', function(d) {
                         tooltip
                          .style("display", "inline-block")
@@ -347,7 +331,6 @@ var RadarChart = {
                         var src = "pokemon/" + d.id + ".png";
                   
                         pic.attr('src',src).attr('style','width:256px; height:256px; display:inline-block;')
->>>>>>> eee7853c266917ed1ebdf22514617f97d094db63
 
 
 
