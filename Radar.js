@@ -7,18 +7,18 @@ function radarAdd(p){
 
   var pokemon = pokemons;
 
-  var tempName = (box.value).charAt(0).toUpperCase() + (box.value).slice(1);
+console.log(box.value);
 
   var isDraw = true;
   for (poke in radardata) {
-    if (radardata[poke].name === tempName) {
+    if (radardata[poke].name === box.value) {
         isDraw = false;
     }
   }
 
   if (isDraw){
     for (var poke in pokemon){
-      if (pokemon[poke].Name == tempName){
+      if (pokemon[poke].Name == box.value){
         //console.log('found poke')
         radardata.push({
           id: pokemon[poke]['#'],
